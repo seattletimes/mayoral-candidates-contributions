@@ -1,0 +1,39 @@
+<%
+  var $ = function(n) {
+    var fixed = n.toFixed(2);
+    var dot = fixed.indexOf(".");
+    for (var i = dot - 3; i >= 1; i -= 3) {
+      fixed = fixed.slice(0, i) + "," + fixed.slice(i);
+    }
+    return fixed;
+  };
+
+%><div class="card">
+  <div class="padding-wrapper">
+    <h2><%= data.name %></h2>
+    <ul>
+      <li>Total contributions: $<%= $(data.campaign.totalContrib) %></li>
+      <li>External contributions: $<%= $(data.campaign.external) %>
+      <li>Expenditures: $<%= $(data.campaign.totalExp) %></li>
+    </ul>
+
+    <div class="districts collapsed">
+      <h3 class="dropdown">
+        District contributions
+        <img src="./assets/dropdown.png" class="arrow">
+      </h3>
+      <ul class="dropdownList">
+        <% for (var d in data.campaign.districts) { %>
+        <li>District <%= d %>: <span class="small-title">$<%= $(data.campaign.districts[d]) %></span></li>
+      <% }; %>
+      </ul>
+    </div>
+
+    <div class="time">
+      <h3>Contributions over time</h3>
+      <canvas class="weekly-money" data-campaign="<%= data.name %>"></canvas>
+      <span class="earliest-week">4/16/17</span>
+      <span class="latest-week"></span>
+    </div>
+  </div>
+</div>

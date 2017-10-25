@@ -1,0 +1,119 @@
+@import "seattletimes";
+
+.interactive {
+  max-width: 980px;
+  margin: auto;
+}
+
+.cards {
+  .display-flex();
+  .flex-wrap(wrap);
+  .justify-content(space-between);
+  .align-items(stretch);
+
+  @media @mobile {
+    display: block;
+  }
+
+ .card {
+    .flex(0 0 50%);
+    padding: 16px;
+
+    .display-flex();
+    .flex-direction(column);
+
+    .padding-wrapper {
+      box-shadow: 5px 5px 5px @df-light-gray;
+      border-radius: 5px;
+      padding: 20px;
+      background-color: @df-off-white;
+      .flex(1 1 0%);
+    }
+
+    h2 {
+      margin-top: 8px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0px;
+    }
+
+    h3 {
+      font-size: 20px;
+
+      &.dropdown {
+        cursor: pointer;
+        border-bottom: 2px dashed @df-light-gray;
+
+        img {
+          width: 30px;
+          transition: all .2s ease-in-out;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .districts.collapsed {
+      .arrow {
+        transform: rotate(-90deg);
+      }
+
+      ul.dropdownList {
+        display: none;
+      }
+    }
+
+    .dropdownList {
+      li {
+        background-color: lighten(@df-off-white, 5%);
+        
+        &:nth-child(2n) {
+          background-color: darken(@df-off-white, 5%);
+        }
+
+        .small-title {
+          font-weight: bold;
+          padding-left: 5px;
+        }
+      }
+    }
+
+    .time {
+      font-size: 13px;
+      position: relative;
+
+      span {
+        position: absolute;
+        bottom: 1; // changed this from 0 to 1 b/c it was hitting the graph
+      }
+      
+      span.earliest-week {
+        left: 0px;
+      }
+      span.latest-week {
+        right: 0px;
+      }
+    }
+  } 
+}
+
+canvas {
+  width: 100%;
+  height: 4em; // changed from 3em
+}
+
+.credits {
+  padding-top: 20px;
+  font-size: 16px;
+  .display-flex();
+
+  @media @mobile {
+    display: block;
+  }
+
+  .source {
+    font-style: italic;
+    margin-right: auto;
+  }
+}

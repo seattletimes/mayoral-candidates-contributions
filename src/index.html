@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <%= t.include("partials/_head.html", grunt.data.json) %>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+
+    <responsive-child>
+      <!-- content goes here -->
+      <main class="interactive">
+        <h1 class="hed">Campaign contributions in 2017 Seattle mayoral race</h1>
+        <p class="chatter">
+          This graphic shows campaign contributions made to Seattle mayoral candidates Jenny Durkan and Cary Moon. 
+        </p>
+        <div class="note">Data is current as of the week of Oct. 25, 2017.</div>
+        <div class="cards"></div>
+        <div class="credits">
+          <div class="source">
+            Source: Ethics and Elections Commission
+          </div>
+          <div class="names">
+            Vanessa Mart&iacute;nez and Thomas Wilburn / The Seattle Times
+          </div>
+        </div>
+      </main>
+    </responsive-child>
+
+    <script>
+      window.contribData = <%= JSON.stringify(json.campaigns) %>;
+      <%
+var moment = require("moment");
+var weeks = {};
+for (var i = 1; i < 52; i++) {
+  weeks[i] = moment().week(i).days(0).format("MM/D/YY");
+}
+      %>
+      window.weekText = <%= JSON.stringify(weeks) %>
+    </script>
+
+    <script src="app.js" async></script>
+    <% if (json.project.production) { %>
+    <%= !json.project.embedded ? t.include("partials/_analytics.html") : "" %>
+    <%= t.include("partials/_workHere.html") %>
+    <% } %>
+  </body>
+</html>
