@@ -1,39 +1,68 @@
 <%
-  var $ = function(n) {
-    var fixed = n.toFixed(2);
-    var dot = fixed.indexOf(".");
-    for (var i = dot - 3; i >= 1; i -= 3) {
-      fixed = fixed.slice(0, i) + "," + fixed.slice(i);
-    }
-    return fixed;
-  };
+  var $ = data.format;
 
+  var districtNames = {
+    1: "District 1 (West Seattle)",
+    2: "District 2 (South Seattle)",
+    3: "District 3 (Capitol Hill)",
+    4: "District 4 (Northeast Seattle)",
+    5: "District 5 (North Seattle)",
+    6: "District 6 (Ballard)",
+    7: "District 7 (Downtown)",
+    other: "Other"
+  };
 %><div class="card">
   <div class="padding-wrapper">
-    <h2><%= data.name %></h2>
+    <div class="type">
+    <% if (data.campaign.type == "IEC") { %>
+      Independent Expenditure Committee
+    <% } else { %>
+      Campaign
+    <% } %>
+    </div>
+    <h2><%= data.campaign.name %></h2>
     <ul>
-      <li>Total contributions: $<%= $(data.campaign.totalContrib) %></li>
-      <li>External contributions: $<%= $(data.campaign.external) %>
-      <li>Expenditures: $<%= $(data.campaign.totalExp) %></li>
+      <li>Total contributions: <span class="money">$<%= $(data.campaign.totalContrib) %></span></li>
+      <li>Outside of Seattle: <span class="money">$<%= $(data.campaign.external) %></span></li>
+
+      <% if (data.campaign.selfFund) { %>
+        <li>Self-funding: <span class="money">$<%= $(data.campaign.selfFund) %></span></li>
+      <% } %>
+
+      <li>Expenditures: <span class="money">$<%= $(data.campaign.totalExp) %></span></li>
     </ul>
 
     <div class="districts collapsed">
-      <h3 class="dropdown">
-        District contributions
-        <img src="./assets/dropdown.png" class="arrow">
+      <h3 class="dropdown" role="button">
+        Contributions by location
+        <!-- <img src="./assets/dropdown.png" class="arrow"> -->
+        <img src="./assets/more.png" class="more icon" alt="more icon">
+        <img src="./assets/less.png" class="less icon" alt="less icon">
       </h3>
       <ul class="dropdownList">
         <% for (var d in data.campaign.districts) { %>
-        <li>District <%= d %>: <span class="small-title">$<%= $(data.campaign.districts[d]) %></span></li>
+        <li>
+          <span class="district"><%= districtNames[d] %>:</span>
+          <span class="money">$<%= $(data.campaign.districts[d]) %></span>
+        </li>
       <% }; %>
       </ul>
     </div>
 
+    <h3 class="finances">Contributions and expenditures by week</h3>
+      <div class="legend">
+        <div><span class="key contribKey"></span> Contributions</div>
+        <div><span class="key expKey"></span> Expenditures</div>
+      </div>
+
     <div class="time">
-      <h3>Contributions over time</h3>
-      <canvas class="weekly-money" data-campaign="<%= data.name %>"></canvas>
-      <span class="earliest-week">4/16/17</span>
-      <span class="latest-week"></span>
+      <div class="canvas-container">
+        <canvas class="weekly-money" data-campaign="<%= data.name %>"></canvas>
+        <span class="earliest-week">4/16/17</span>
+        <span class="latest-week"></span>
+        <span class="highest-contribution"></span>
+        <span class="highest-expenditure"></span>
+      </div>
     </div>
   </div>
 </div>

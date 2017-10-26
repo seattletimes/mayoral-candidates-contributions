@@ -1,65 +1,9 @@
 {
-  "People for Jenny Durkan": {
-    "totalContrib": 846735,
-    "totalExp": 118016.16000000002,
-    "weeklyContrib": {
-      "26": 100,
-      "27": 50000,
-      "29": 30000,
-      "30": 41000,
-      "36": 5000,
-      "38": 1500,
-      "39": 2500,
-      "40": 2500,
-      "41": 188635,
-      "42": 525500
-    },
-    "weeklyExp": {
-      "27": 30000,
-      "28": 90,
-      "29": 49500,
-      "30": 30078.37,
-      "31": 6184.75,
-      "33": 2000,
-      "35": 80.6,
-      "40": 82.44
-    },
-    "seattle": 0,
-    "districts": {
-      "1": 100,
-      "2": 500,
-      "3": 5535,
-      "4": 5000,
-      "5": 0,
-      "6": 0,
-      "7": 793000
-    },
-    "external": 42600,
-    "contributions": 28,
-    "expenditures": 40
-  },
-  "PEOPLE FOR MOON": {
-    "totalContrib": 25000,
-    "totalExp": 0,
-    "weeklyContrib": {
-      "42": 25000
-    },
-    "weeklyExp": {},
-    "seattle": 0,
-    "districts": {
-      "1": 0,
-      "2": 0,
-      "3": 16500,
-      "4": 2500,
-      "5": 0,
-      "6": 0,
-      "7": 3000
-    },
-    "external": 3000,
-    "contributions": 10,
-    "expenditures": 0
-  },
   "JennyDurkanforSeattle": {
+    "name": "Jenny Durkan for Seattle",
+    "type": "Campaign",
+    "candidate": "Jenny Durkan",
+    "home": 7,
     "totalContrib": 865228.12,
     "totalExp": 674414.9799999996,
     "weeklyContrib": {
@@ -122,13 +66,19 @@
       "4": 67872,
       "5": 22596,
       "6": 44812.25,
-      "7": 169228.97
+      "7": 169228.97,
+      "other": 270453.5
     },
-    "external": 270453.5,
+    "external": 247807.46,
+    "selfFund": 400,
     "contributions": 4306,
     "expenditures": 326
   },
   "Cary Moon for Mayor": {
+    "name": "Cary Moon for Mayor",
+    "type": "Campaign",
+    "candidate": "Cary Moon",
+    "home": 7,
     "totalContrib": 323273,
     "totalExp": 258044.66999999993,
     "weeklyContrib": {
@@ -197,10 +147,84 @@
       "4": 15292,
       "5": 3757,
       "6": 12867.02,
-      "7": 24166.86
+      "7": 198335.86,
+      "other": 31580.13
     },
-    "external": 205749.13,
+    "external": 26200,
+    "selfFund": 176520.86,
     "contributions": 951,
     "expenditures": 121
+  },
+  "People for Jenny Durkan": {
+    "name": "People for Jenny Durkan",
+    "type": "IEC",
+    "candidate": "Jenny Durkan",
+    "home": 7,
+    "totalContrib": 846735,
+    "totalExp": 118016.16000000002,
+    "weeklyContrib": {
+      "26": 100,
+      "27": 50000,
+      "29": 30000,
+      "30": 41000,
+      "36": 5000,
+      "38": 1500,
+      "39": 2500,
+      "40": 2500,
+      "41": 188635,
+      "42": 525500
+    },
+    "weeklyExp": {
+      "27": 30000,
+      "28": 90,
+      "29": 49500,
+      "30": 30078.37,
+      "31": 6184.75,
+      "33": 2000,
+      "35": 80.6,
+      "40": 82.44
+    },
+    "seattle": 0,
+    "districts": {
+      "1": 100,
+      "2": 500,
+      "3": 5535,
+      "4": 5000,
+      "5": 0,
+      "6": 0,
+      "7": 793000,
+      "other": 42600
+    },
+    "external": 27500,
+    "selfFund": 0,
+    "contributions": 28,
+    "expenditures": 40
+  },
+  "PEOPLE FOR MOON": {
+    "name": "People for Moon",
+    "type": "IEC",
+    "candidate": "Cary Moon",
+    "home": 7,
+    "totalContrib": 25000,
+    "totalExp": 0,
+    "weeklyContrib": {
+      "42": 25000
+    },
+    "weeklyExp": {},
+    "seattle": 0,
+    "districts": {
+      "1": 0,
+      "2": 0,
+      "3": 16500,
+      "4": 2500,
+      "5": 0,
+      "6": 0,
+      "7": 3000,
+      "other": 3000
+    },
+    "external": 3000,
+    "selfFund": 0,
+    "contributions": 10,
+    "expenditures": 0
   }
 }

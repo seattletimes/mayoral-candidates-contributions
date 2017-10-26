@@ -7,20 +7,46 @@ module.exports = function(grunt) {
     var done = this.async();
 
     var campaigns = {
-      "People for Jenny Durkan": {},
-      "PEOPLE FOR MOON": {},
-      "JennyDurkanforSeattle": {},
-      "Cary Moon for Mayor": {}
+      "JennyDurkanforSeattle": {
+        name: "Jenny Durkan for Seattle",
+        type: "Campaign",
+        candidate: "Jenny Durkan",
+        home: 7
+      },
+      "Cary Moon for Mayor": {
+        name: "Cary Moon for Mayor",
+        type: "Campaign",
+        candidate: "Cary Moon",
+        home: 7
+      },
+      "People for Jenny Durkan": {
+        name: "People for Jenny Durkan",
+        type: "IEC",
+        candidate: "Jenny Durkan",
+        home: 7
+      },
+      "PEOPLE FOR MOON": {
+        name: "People for Moon",
+        type: "IEC",
+        candidate: "Cary Moon",
+        home: 7
+      }
     };
     for (var k in campaigns) {
+      var { name, type, candidate, home } = campaigns[k];
       campaigns[k] = {
+        name,
+        type,
+        candidate,
+        home,
         totalContrib: 0,
         totalExp: 0,
         weeklyContrib: {},
         weeklyExp: {},
         seattle: 0,
-        districts: {},
+        districts: { other: 0 },
         external: 0,
+        selfFund: 0,
         contributions: 0,
         expenditures: 0
       }
@@ -37,26 +63,40 @@ module.exports = function(grunt) {
 
         var contribution = row.moneyContributionsEffect_SEEC;
         var expenditure = row.moneyExpendituresEffect_SEEC;
+        var transactor = row.strTransactorName;
+        var PDC = row.strPDCFormLineNumber;
+
         if (!contribution && !expenditure) return;
-        var district = row.intCodedDistrict_SEEC > 7 ? "": row.intCodedDistrict_SEEC;
+        var district = row.intCodedDistrict_SEEC;
         var [month, day, year] = row.strTransactionDate.split("/").map(Number);
         var date = new moment([year < 2000 ? year + 2000 : year, month - 1, day]);
         // month-1 so that it becomes a computer month
         var week = date.week();
-        console.log(row.strTransactionDate, date.format("MM/D/YY"), week)
 
         var name = row.strCampaignName;
         var campaign = campaigns[name];
+
+        // var candidate = campaigns[candidate];
+
+        // if ((transactor == candidate) || PDC) {
+        //   campaigns[selfFund] = 2;
+        // }
 
         if (contribution) {
 
           campaign.totalContrib += contribution;
           campaign.contributions++;
 
-          if (district) {
+          if ((transactor == campaign.candidate) || (PDC == "C3.1B")) {
+            campaign.selfFund += contribution;
+            campaign.districts[campaign.home] += contribution;
+          } else if (district && district <= 7) {
             campaign.districts[district] += contribution;
-          } else {
+          } else if (district == 91) {
             campaign.external += contribution
+            campaign.districts.other += contribution;
+          } else {
+            campaign.districts.other += contribution;
           }
 
           if (!campaign.weeklyContrib[week]) {
