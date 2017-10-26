@@ -49,6 +49,13 @@ h1 {
     ul {
       list-style-type: none;
       padding: 0px;
+
+      &.breakdown {
+        li {
+          .display-flex();
+          .justify-content(space-between);
+        }
+      }
     }
 
     .type {
@@ -81,10 +88,21 @@ h1 {
         display: none;
       }
 
+      .seeMore {
+        display: none;
+      }
+
       &.collapsed {
         // .arrow {
         //   transform: rotate(-90deg);
         // }
+
+        .seeMore {
+          display: inline;
+          font-size: 16px;
+          font-style: italic;
+          font-weight: normal;
+        }
 
         .less {
           display: none;
@@ -191,6 +209,10 @@ canvas {
   .source {
     font-style: italic;
     margin-right: auto;
+  }
+
+  .names {
+    text-transform: uppercase;
   }
 }
 

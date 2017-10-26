@@ -21,15 +21,19 @@
     <% } %>
     </div>
     <h2><%= data.campaign.name %></h2>
-    <ul>
-      <li>Total contributions: <span class="money">$<%= $(data.campaign.totalContrib) %></span></li>
-      <li>Outside of Seattle: <span class="money">$<%= $(data.campaign.external) %></span></li>
+    <ul class="breakdown">
+      <li><span class="lead-in">Total contributions:</span> 
+        <span class="money">$<%= $(data.campaign.totalContrib) %></span></li>
+      <li><span class="lead-in">Outside of Seattle:</span> 
+        <span class="money">$<%= $(data.campaign.external) %></span></li>
 
       <% if (data.campaign.selfFund) { %>
-        <li>Self-funding: <span class="money">$<%= $(data.campaign.selfFund) %></span></li>
+        <li><span class="lead-in">Self-funding:</span> 
+          <span class="money">$<%= $(data.campaign.selfFund) %></span></li>
       <% } %>
 
-      <li>Expenditures: <span class="money">$<%= $(data.campaign.totalExp) %></span></li>
+      <li><span class="lead-in">Expenditures:</span> 
+        <span class="money">$<%= $(data.campaign.totalExp) %></span></li>
     </ul>
 
     <div class="districts collapsed">
@@ -38,6 +42,7 @@
         <!-- <img src="./assets/dropdown.png" class="arrow"> -->
         <img src="./assets/more.png" class="more icon" alt="more icon">
         <img src="./assets/less.png" class="less icon" alt="less icon">
+        <span class="collapsed seeMore">(Click to expand)</span>
       </h3>
       <ul class="dropdownList">
         <% for (var d in data.campaign.districts) { %>
